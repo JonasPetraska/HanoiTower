@@ -20,7 +20,7 @@ namespace HanoiTower
 				return;
 			}
 
-			if(numberOfDisksInt > 11 || numberOfDisksInt <= 0)
+			if(numberOfDisksInt > 10 || numberOfDisksInt <= 0)
 			{
 				Console.WriteLine("Please enter a number between 1 and 10 inclusively.");
 				Main(args);
