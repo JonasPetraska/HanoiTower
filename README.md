@@ -1,5 +1,6 @@
 # Hanoi Tower
-Artificial intelligence course Hanoi tower program
+Artificial intelligence course Hanoi tower program. 
+Vilnius University, 2020
 
 # Algorithm
 Algorithm based on recursion
