@@ -1,4 +1,4 @@
-# HanoiTower
+# Hanoi Tower
 Artificial intelligence course Hanoi tower program
 
 # Algorithm
