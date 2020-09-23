@@ -48,7 +48,7 @@ namespace HanoiTower
             ExecuteInternal(numberOfDisk - 1, startTower, intermediaryTower, endTower);
             _state.Move(startTower, endTower, numberOfDisk);
             _counter++;
-            Console.WriteLine($"{_counter}. Move disk {numberOfDisk} from {startTower} to {endTower}. {_state.GetState()}.");
+            Console.WriteLine($"{string.Format("{0, 4}", _counter)}. Move disk {numberOfDisk} from {startTower} to {endTower}. {_state.GetState()}.");
             ExecuteInternal(numberOfDisk - 1, intermediaryTower, endTower, startTower);
         }
     }
