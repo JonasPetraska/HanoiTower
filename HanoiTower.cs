@@ -34,6 +34,8 @@ namespace HanoiTower
 
         public void Execute()
         {
+            _counter = 0;
+            _state.Reset();
             Console.WriteLine($"Initial state: {_state.GetState()}");
             ExecuteInternal(_numberOfDisks, _nameOfStartTower, _nameOfEndTower, _nameOfIntermediaryTower);
         }
@@ -57,12 +59,19 @@ namespace HanoiTower
         private char _nameOfStartTower;
         private char _nameOfEndTower;
         private char _nameOfIntermediaryTower;
+        private List<int> _initialFirstTowerState;
+        private List<int> _initialSecondTowerState;
+        private List<int> _initialThirdTowerState;
 
         public HanoiTowerState(char nameOfStartTower, char nameOfEndTower, char nameOfIntermediaryTower, List<int> initialFirstTowerState, List<int> initialSecondTowerState, List<int> initialThirdTowerState)
         {
             _nameOfStartTower = nameOfStartTower;
             _nameOfEndTower = nameOfEndTower;
             _nameOfIntermediaryTower = nameOfIntermediaryTower;
+            _initialFirstTowerState = initialFirstTowerState;
+            _initialSecondTowerState = initialSecondTowerState;
+            _initialThirdTowerState = initialThirdTowerState;
+
             _internalState = new Dictionary<char, List<int>>();
             _internalState.Add(_nameOfStartTower, initialFirstTowerState ?? new List<int>());
             _internalState.Add(_nameOfEndTower, initialSecondTowerState ?? new List<int>());
@@ -78,6 +87,15 @@ namespace HanoiTower
         {
             _internalState[fromTower].Remove(diskNumber);
             _internalState[toTower].Add(diskNumber);
+        }
+
+        public void Reset()
+        {
+            _internalState = new Dictionary<char, List<int>>();
+            _internalState.Add(_nameOfStartTower, _initialFirstTowerState ?? new List<int>());
+            _internalState.Add(_nameOfEndTower, _initialSecondTowerState ?? new List<int>());
+            _internalState.Add(_nameOfIntermediaryTower, _initialThirdTowerState ?? new List<int>());
+
         }
     }
 }
