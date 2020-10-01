@@ -32,6 +32,9 @@ namespace HanoiTower
             _state = new HanoiTowerState(_nameOfStartTower, _nameOfEndTower, _nameOfIntermediaryTower, initialFirstTowerState, null, null);
         }
 
+        /// <summary>
+        /// Recursive solution
+        /// </summary>
         public void Execute()
         {
             _counter = 0;
@@ -40,6 +43,13 @@ namespace HanoiTower
             ExecuteInternal(_numberOfDisks, _nameOfStartTower, _nameOfEndTower, _nameOfIntermediaryTower);
         }
 
+        /// <summary>
+        /// Internal recursive solution
+        /// </summary>
+        /// <param name="numberOfDisk">Disk number to move</param>
+        /// <param name="startTower">Start tower</param>
+        /// <param name="endTower">End tower</param>
+        /// <param name="intermediaryTower">Intermediary tower</param>
         private void ExecuteInternal(int numberOfDisk, char startTower, char endTower, char intermediaryTower)
         {
             if (numberOfDisk <= 0)
@@ -78,17 +88,31 @@ namespace HanoiTower
             _internalState.Add(_nameOfIntermediaryTower, initialThirdTowerState ?? new List<int>());
         }
 
+        /// <summary>
+        /// Get state as a string representation
+        /// </summary>
+        /// <returns>String representation of state of the towers</returns>
         public string GetState()
         {
             return $"{_nameOfStartTower}=({string.Join(",", _internalState[_nameOfStartTower])}), {_nameOfIntermediaryTower}=({string.Join(",", _internalState[_nameOfIntermediaryTower])}), {_nameOfEndTower}=({string.Join(",", _internalState[_nameOfEndTower])})";
         }
 
+
+        /// <summary>
+        /// Move disk from tower to another tower
+        /// </summary>
+        /// <param name="fromTower">Tower name to move from</param>
+        /// <param name="toTower">Tower name to move to</param>
+        /// <param name="diskNumber">Disk number</param>
         public void Move(char fromTower, char toTower, int diskNumber)
         {
             _internalState[fromTower].Remove(diskNumber);
             _internalState[toTower].Add(diskNumber);
         }
 
+        /// <summary>
+        /// Reset state
+        /// </summary>
         public void Reset()
         {
             _internalState = new Dictionary<char, List<int>>();
@@ -97,5 +121,12 @@ namespace HanoiTower
             _internalState.Add(_nameOfIntermediaryTower, _initialThirdTowerState ?? new List<int>());
 
         }
+    }
+
+    //Enum of direction for iterative solution
+    public enum MoveDirection
+    {
+        Clockwise,
+        CounterClockWise
     }
 }
