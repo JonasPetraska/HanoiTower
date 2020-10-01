@@ -122,11 +122,4 @@ namespace HanoiTower
 
         }
     }
-
-    //Enum of direction for iterative solution
-    public enum MoveDirection
-    {
-        Clockwise,
-        CounterClockWise
-    }
 }
